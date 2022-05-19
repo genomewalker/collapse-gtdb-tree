@@ -1,0 +1,9 @@
+name: collapse-gtdb-tree
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python>=3.7,<3.10
+  - Cython>=0.29.24
+  - pip
