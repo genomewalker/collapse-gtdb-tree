@@ -151,27 +151,3 @@ def suppress_stdout():
     with open(devnull, "w") as fnull:
         with redirect_stderr(fnull) as err, redirect_stdout(fnull) as out:
             yield (err, out)
-
-
-def fast_flatten(input_list):
-    return list(chain.from_iterable(input_list))
-
-
-def concat_df(frames):
-    COLUMN_NAMES = frames[0].columns
-    df_dict = dict.fromkeys(COLUMN_NAMES, [])
-    for col in COLUMN_NAMES:
-        extracted = (frame[col] for frame in frames)
-        # Flatten and save to df_dict
-        df_dict[col] = fast_flatten(extracted)
-    df = pd.DataFrame.from_dict(df_dict)[COLUMN_NAMES]
-    return df
-
-
-def prune_gtdb_tree(tree_file, ranks, ids, taxonomy_file):
-    logging.info(f"Reading GTDB bac120 tree")
-    t = Tree(str(tree_file), quoted_node_names=True, format=1)
-    logging.info(f"Pruning tree for {marker} [leaves: {len(t.get_leaves()):,}]")
-    t.prune(faa_ids)
-    logging.info(f"Writing pruned tree for {marker} [leaves: {len(t.get_leaves()):,}]")
-    t.write(outfile=str(filt_tree_file), quoted_node_names=True, format=1)
