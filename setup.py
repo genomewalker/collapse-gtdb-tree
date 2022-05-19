@@ -3,7 +3,6 @@ import versioneer
 
 requirements = [
     "pandas>=1.4.2",
-    "tqdm>=4.62.3",
     "ete3>=3.1.2",
 ]
 
