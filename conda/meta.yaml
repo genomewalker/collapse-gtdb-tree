@@ -14,12 +14,12 @@ build:
 
 requirements:
   build:
-    - python==3.9
+    - python>=3.8,<3.10
     - setuptools>=18.0
     - pip
     - Cython>=0.29.24
   run:
-    - python==3.9
+    - python>=3.8,<3.10
     - Cython>=0.29.24
     - pip
     
