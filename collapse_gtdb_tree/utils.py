@@ -2,20 +2,12 @@ import argparse
 import sys
 import gzip
 import os
-import shutil
 import logging
-import pandas as pd
-from multiprocessing import Pool
-from functools import partial, reduce
 from contextlib import contextmanager, redirect_stderr, redirect_stdout
 from os import devnull
-from regex import P
-import tqdm
 from collapse_gtdb_tree import __version__
 import time
-from itertools import chain
-from pathlib import Path
-from operator import or_
+
 
 log = logging.getLogger("my_logger")
 log.setLevel(logging.INFO)
