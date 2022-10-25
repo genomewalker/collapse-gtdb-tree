@@ -31,6 +31,6 @@ test:
 
 about:
   home: https://github.com/genomewalker/collapse-gtdb-tree
-  summary: "A simple tool to filter BLASTx m8 files using the FAMLI algorithm"
+  summary: "A simple tool to collapse a GTDB to a certain rank."
   license: {{ setup_data['license'] }}
   license_file: LICENSE
