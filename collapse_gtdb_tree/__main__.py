@@ -44,7 +44,7 @@ def create_collapsed_tree_files(file, ranks):
     return files
 
 
-def collapse_gtdb_tree_by_rank(tree, taxonomy, ranks, files):
+def collapse_gtdb_tree_by_rank(tree, taxonomy, ranks, files, quoted_names=False):
     for rank in ranks:
         t = tree.copy()
         df = taxonomy[["genome_id", rank]]
@@ -57,11 +57,10 @@ def collapse_gtdb_tree_by_rank(tree, taxonomy, ranks, files):
         # rename leaves
         for leaf in t.iter_leaves():
             leaf.name = ids[leaf.name]
-        t.write(outfile=str(files[rank]), quoted_node_names=True, format=1)
+        t.write(outfile=str(files[rank]), quoted_node_names=quoted_names, format=1)
 
 
 def main():
-
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(levelname)s ::: %(asctime)s ::: %(message)s",
@@ -93,7 +92,11 @@ def main():
     files = create_collapsed_tree_files(args.tree, args.rank)
     # get list of ids by ranks
     collapse_gtdb_tree_by_rank(
-        tree=tree, taxonomy=taxonomy_file, ranks=args.rank, files=files
+        tree=tree,
+        taxonomy=taxonomy_file,
+        ranks=args.rank,
+        files=files,
+        quoted_names=args.quoted_names,
     )
 
 
