@@ -20,6 +20,7 @@ def is_debug():
 
 filters = ["breadth", "depth", "depth_evenness", "breadth_expected_ratio"]
 
+
 # From https://stackoverflow.com/a/59617044/15704171
 def convert_list_to_str(lst):
     n = len(lst)
@@ -89,11 +90,12 @@ defaults = {
 }
 
 help_msg = {
-    "tree": f"GTDB tree file",
-    "taxonomy": f"GTDB taxonomy file",
-    "rank": f"Select taxonomic rank to collapse",
-    "debug": f"Print debug messages",
-    "version": f"Print program version",
+    "tree": "GTDB tree file",
+    "taxonomy": "GTDB taxonomy file",
+    "rank": "Select taxonomic rank to collapse",
+    "debug": "Print debug messages",
+    "quoted_names": "Add quotes to the node and leaf names",
+    "version": "Print program version",
 }
 
 
@@ -123,6 +125,12 @@ def get_arguments(argv=None):
         type=lambda x: get_ranks(parser, x, "--rank"),
         default=defaults["rank"],
         help=help_msg["rank"],
+    )
+    parser.add_argument(
+        "--quoted-names",
+        dest="quoted_names",
+        action="store_true",
+        help=help_msg["quoted_names"],
     )
     parser.add_argument(
         "--debug", dest="debug", action="store_true", help=help_msg["debug"]
